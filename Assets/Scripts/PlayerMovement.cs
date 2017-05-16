@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : NetworkBehaviour {
 
     [Header("Control")]
 
@@ -26,10 +27,15 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Start()
     {
+        if (!isLocalPlayer)
+        {
+            Destroy(this);
+            return;
+        }
         _controller = GetComponent<CharacterController>();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         var inputX = Input.GetAxis("Horizontal");
         var inputY = Input.GetAxis("Vertical");
         var jump = Input.GetButton("Jump");

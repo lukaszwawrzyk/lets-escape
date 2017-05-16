@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class FirstPersonCamera : MonoBehaviour {
+public class FirstPersonCamera : NetworkBehaviour {
 
     [SerializeField]
     private float _sensitivity = 5.0f;
@@ -12,12 +13,17 @@ public class FirstPersonCamera : MonoBehaviour {
 
     private void Start()
     {
+        if (!isLocalPlayer)
+        {
+            Destroy(this);
+            return;
+        }
         _player = transform;
         _mainCamera = Camera.main.transform;
         EnableCameraMovement();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
 
         if (_cameraControlEnabled)

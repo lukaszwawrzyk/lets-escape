@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class JumpTweak : MonoBehaviour {
+public class JumpTweak : NetworkBehaviour {
 
     [SerializeField]
     [Range(0.1f, 10.0f)]
@@ -13,12 +14,17 @@ public class JumpTweak : MonoBehaviour {
     private CharacterController _controller;
     private bool _lowStartFalling;
 
-    private void Awake()
+    private void Start()
     {
+        if (!isLocalPlayer)
+        {
+            Destroy(this);
+            return;
+        }
         _controller = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         var jumpButtonClicked = Input.GetButton("Jump");
 
