@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class JumpEx : MonoBehaviour {
+public class JumpTweak : MonoBehaviour {
 
     [SerializeField]
     [Range(0.1f, 10.0f)]

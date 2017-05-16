@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour {
 
     [Header("Control")]
 
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
     private float _gravity = 9.81f;
 
     [SerializeField]
-    private bool _airControl = true;
+    private bool _allowMovingInTheAir = true;
 
     private Vector3 _moveDirection = Vector3.zero;
     private CharacterController _controller;
@@ -44,14 +44,11 @@ public class Player : MonoBehaviour {
                 _moveDirection.y = _jumpVelocity;
             }
         }
-        else
+        else if (_allowMovingInTheAir)
         {
-            if (_airControl)
-            {
-                _moveDirection.x = inputX * _speed;
-                _moveDirection.z = inputY * _speed;
-                _moveDirection = transform.TransformDirection(_moveDirection);
-            }
+            _moveDirection.x = inputX * _speed;
+            _moveDirection.z = inputY * _speed;
+            _moveDirection = transform.TransformDirection(_moveDirection);
         }
 
         _moveDirection.y -= _gravity * Time.deltaTime;
