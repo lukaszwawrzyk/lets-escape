@@ -1,52 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FirstPersonCamera : MonoBehaviour {
 
-    private GameObject _Player;
-    private Vector2 mouseLook;
-
     [SerializeField]
-    private float _Sensitivity = 5.0f;
+    private float _sensitivity = 5.0f;
 
-    private bool _EnableControll = true;
-    private Vector2 _MouseDelta;
+    private GameObject _player;
+    private Vector2 _lookDirection;
+    private bool _cameraControlEnabled = true;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        _Player = this.transform.parent.gameObject;
+        _player = transform.parent.gameObject;
     }
 
     private void Update()
     {
-        _MouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-
-        if (_EnableControll)
+        if (_cameraControlEnabled)
         {
-            _MouseDelta = Vector2.Scale(_MouseDelta, new Vector2(_Sensitivity, _Sensitivity));
-
-            mouseLook += _MouseDelta;
-
-            transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-            _Player.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, _Player.transform.up);
+            RotateCamera();
         }
 
         if (Input.GetKeyDown("escape"))
         {
-            if (_EnableControll)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                _EnableControll = false;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                _EnableControll = true;
-            }
-
+            ToggleCameraControl();
         }
     }
 
+    private void RotateCamera()
+    {
+        var mousePosition = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        var mouseDelta = Vector2.Scale(mousePosition, new Vector2(_sensitivity, _sensitivity));
+        _lookDirection += mouseDelta;
+
+        transform.localRotation = Quaternion.AngleAxis(-_lookDirection.y, Vector3.right);
+        _player.transform.localRotation = Quaternion.AngleAxis(_lookDirection.x, _player.transform.up);
+    }
+
+    private void ToggleCameraControl()
+    {
+        if (_cameraControlEnabled)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            _cameraControlEnabled = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            _cameraControlEnabled = true;
+        }
+    }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour {
 
@@ -8,59 +6,56 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     [Range(0.1f, 25.0f)]
-    private float _Speed = 5.0f;
+    private float _speed = 5.0f;
 
     [Header("Jumps")]
 
     [SerializeField]
     [Range(0.1f, 50.0f)]
-    private float _JumpVelocity = 7.0f;
+    private float _jumpVelocity = 7.0f;
 
     [SerializeField]
     [Range(0.1f, 100.0f)]
-    private float _Gravity = 9.81f;
+    private float _gravity = 9.81f;
 
     [SerializeField]
-    private bool _AirControll = true;
+    private bool _airControl = true;
 
-    
-    private Vector3 _MoveDirection = Vector3.zero;
-    private float _InputX;
-    private float _InputY;
-    private bool _Jump;
-    private float _MouseX;
-    private float _MouseY;
+    private Vector3 _moveDirection = Vector3.zero;
+    private CharacterController _controller;
 
-    void Update() {
-        _InputX = Input.GetAxis("Horizontal");
-        _InputY = Input.GetAxis("Vertical");
-        _Jump = Input.GetButton("Jump");
+    private void Start()
+    {
+        _controller = GetComponent<CharacterController>();
+    }
 
-        var controller = GetComponent<CharacterController>();
+    private void Update() {
+        var inputX = Input.GetAxis("Horizontal");
+        var inputY = Input.GetAxis("Vertical");
+        var jump = Input.GetButton("Jump");
 
-        if (controller.isGrounded)
+        if (_controller.isGrounded)
         {
-            _MoveDirection = new Vector3(_InputX, 0, _InputY);
-            _MoveDirection = transform.TransformDirection(_MoveDirection);
-            _MoveDirection *= _Speed;
-            if (_Jump)
+            _moveDirection = new Vector3(inputX, 0, inputY);
+            _moveDirection = transform.TransformDirection(_moveDirection);
+            _moveDirection *= _speed;
+            if (jump)
             {
-                _MoveDirection.y = _JumpVelocity;
+                _moveDirection.y = _jumpVelocity;
             }
-
         }
         else
         {
-            if (_AirControll)
+            if (_airControl)
             {
-                _MoveDirection.x = _InputX * _Speed;
-                _MoveDirection.z = _InputY * _Speed;
-                _MoveDirection = transform.TransformDirection(_MoveDirection);
+                _moveDirection.x = inputX * _speed;
+                _moveDirection.z = inputY * _speed;
+                _moveDirection = transform.TransformDirection(_moveDirection);
             }
         }
 
-        _MoveDirection.y -= _Gravity * Time.deltaTime;
-        controller.Move(_MoveDirection * Time.deltaTime);
+        _moveDirection.y -= _gravity * Time.deltaTime;
+        _controller.Move(_moveDirection * Time.deltaTime);
     }
 }
 

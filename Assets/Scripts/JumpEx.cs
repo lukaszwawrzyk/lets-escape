@@ -1,48 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JumpEx : MonoBehaviour {
 
     [SerializeField]
     [Range(0.1f, 10.0f)]
-    private float _FallMultiplier = 1.5f;
+    private float _fallMultiplier = 1.5f;
 
     [SerializeField]
     [Range(0.1f, 10.0f)]
-    private float _LowFallMultiplier = 1.3f;
+    private float _lowFallMultiplier = 1.3f;
 
-    private CharacterController _Controller;
-    private bool _LowStartFalling = false;
-    private bool _JumpButton;
+    private CharacterController _controller;
+    private bool _lowStartFalling;
 
     private void Awake()
     {
-        _Controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-        _JumpButton = Input.GetButton("Jump");
+        var jumpButtonClicked = Input.GetButton("Jump");
 
-
-        if (_Controller.velocity.y < 0)
+        if (_controller.velocity.y < 0)
         {
-            _Controller.Move(Vector3.up * Physics.gravity.y * (_FallMultiplier - 1.0f) * Time.deltaTime);
+            _controller.Move(Vector3.up * Physics.gravity.y * (_fallMultiplier - 1.0f) * Time.deltaTime);
         }
-        else if (_Controller.velocity.y > 0 && !_JumpButton && !_LowStartFalling)
+        else if (_controller.velocity.y > 0 && !jumpButtonClicked && !_lowStartFalling)
         {
-            _LowStartFalling = true;
-        }
-
-        if (_Controller.isGrounded)
-        {
-            _LowStartFalling = false;
+            _lowStartFalling = true;
         }
 
-        if (_LowStartFalling)
+        if (_controller.isGrounded)
         {
-            _Controller.Move(Vector3.up * Physics.gravity.y * (_LowFallMultiplier - 1.0f) * Time.deltaTime);
+            _lowStartFalling = false;
+        }
+
+        if (_lowStartFalling)
+        {
+            _controller.Move(Vector3.up * Physics.gravity.y * (_lowFallMultiplier - 1.0f) * Time.deltaTime);
         }
     }
 }
