@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -11,6 +9,7 @@ public class MovingPlatform : NetworkBehaviour
 	[SerializeField] private Transform _end;
 	[SerializeField] private Transform _platform;
 	[SerializeField] private float _speed = 2.0f;
+	[SerializeField] private float _grabbingBoxHeight = 2.5f;
 
 	private Vector3 _direction;
 	private Transform _destination;
@@ -25,7 +24,12 @@ public class MovingPlatform : NetworkBehaviour
 
 	private void OnCollisionStay(Collision other)
 	{
-		var player = other.gameObject.GetComponent<CharacterController>();
+		AddPlayerToPlatform(other);
+	}
+
+	private void AddPlayerToPlatform(Collision collider)
+	{
+		var player = collider.gameObject.GetComponent<CharacterController>();
 		if (player != null)
 		{
 			_playersOnPlatform.Add(player);
@@ -37,21 +41,46 @@ public class MovingPlatform : NetworkBehaviour
 		var moveDistance = _speed * Time.fixedDeltaTime;
 		var movementVector = _direction * moveDistance;
 
-		const float boxHeight = 2.5f;
-		var pos = new Vector3(_platform.position.x, _platform.position.y + (boxHeight + _platform.localScale.y) / 2.0f, _platform.position.z);
-		var scale = new Vector3(_platform.localScale.x, boxHeight, _platform.localScale.z);
-		var platformBounds = new Bounds(pos, scale);
-		_playersOnPlatform.RemoveWhere(player => !platformBounds.Contains(player.transform.position));
-		_platform.Translate(movementVector);
+		RemovePlayersOutsideGrabbingBox();
+		MovePlatform(movementVector);
+		MovePlayers(movementVector);
+
+		if (DistanceToDestination() < moveDistance)
+		{
+			ToggleDestination();
+		}
+	}
+
+	private float DistanceToDestination()
+	{
+		return Vector3.Distance(_platform.position, _destination.position);
+	}
+
+	private void MovePlayers(Vector3 movementVector)
+	{
 		foreach (var player in _playersOnPlatform)
 		{
 			player.Move(movementVector);
 		}
+	}
 
-		if (Vector3.Distance(_platform.position, _destination.position) < moveDistance)
-		{
-			ToggleDestination();
-		}
+	private void MovePlatform(Vector3 movementVector)
+	{
+		_platform.Translate(movementVector);
+	}
+
+	private void RemovePlayersOutsideGrabbingBox()
+	{
+		var platformBounds = GrabbingBoxBounds();
+		_playersOnPlatform.RemoveWhere(player => !platformBounds.Contains(player.transform.position));
+	}
+
+	private Bounds GrabbingBoxBounds()
+	{
+		var yPos = _platform.position.y + (_grabbingBoxHeight + _platform.localScale.y) / 2.0f;
+		var pos = new Vector3(_platform.position.x, yPos, _platform.position.z);
+		var scale = new Vector3(_platform.localScale.x, _grabbingBoxHeight, _platform.localScale.z);
+		return new Bounds(pos, scale);
 	}
 
 	private void ToggleDestination()
