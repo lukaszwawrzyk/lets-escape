@@ -1,64 +1,57 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Door : MonoBehaviour, ButtonTarget {
+public class Door : MonoBehaviour, IButtonTarget
+{
+    [SerializeField] private float _angle;
+    [SerializeField] private float _openAngle = 130.0f;
+    [SerializeField] private float _openingSpeed = 150.0f;
 
-    [SerializeField]
-    private float angle = 0;
+    private bool _opening;
+    private bool _closing;
+    private bool _opened;
 
-    [SerializeField]
-    private float openAngle = 130.0f;
-
-    [SerializeField]
-    private float openingSpeed = 150.0f;
-
-    private bool opening = false;
-    private bool closing = false;
-
-    private bool opened = false;
-
-    void Update () {
-        if (opening)
+    private void Update()
+    {
+        if (_opening)
         {
-            angle += Time.deltaTime * openingSpeed;
+            _angle += Time.deltaTime * _openingSpeed;
 
-            if (angle >= openAngle)
-            { 
-                opening = false;
-                angle = openAngle;
-            }
-        }
-        else if (closing)
-        {
-            angle -= Time.deltaTime * openingSpeed;
-
-            if (angle <= 0)
+            if (_angle >= _openAngle)
             {
-                closing = false;
-                angle = 0;
+                _opening = false;
+                _angle = _openAngle;
+            }
+        }
+        else if (_closing)
+        {
+            _angle -= Time.deltaTime * _openingSpeed;
+
+            if (_angle <= 0)
+            {
+                _closing = false;
+                _angle = 0;
             }
         }
 
-        transform.localRotation = Quaternion.Euler(new Vector3(0, angle, 0));
+        transform.localRotation = Quaternion.Euler(new Vector3(0, _angle, 0));
     }
 
-    void Open()
+    private void Open()
     {
-        opened = true;
-        opening = true;
+        _opened = true;
+        _opening = true;
     }
 
-    void Close()
+    private void Close()
     {
-        opened = false;
-        closing = true;
+        _opened = false;
+        _closing = true;
     }
 
     public void Clicked()
     {
-        if (opened)
+        if (_opened)
         {
             Close();
         }
@@ -66,6 +59,5 @@ public class Door : MonoBehaviour, ButtonTarget {
         {
             Open();
         }
-        
     }
 }

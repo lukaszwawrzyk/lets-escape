@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4312442556232960}
   - component: {fileID: 114061779971969056}
+  - component: {fileID: 114563545750590278}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -134,6 +135,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa6a2b6ab2db924aadcfc2149c46e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 0
-  openAngle: 130
-  openingSpeed: 150
+  _angle: 0
+  _openAngle: 130
+  _openingSpeed: 150
+  _opening: 0
+  _closing: 0
+  _opened: 0
+--- !u!114 &114563545750590278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116594279073736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 101
+    i1: 16
+    i2: 207
+    i3: 191
+    i4: 156
+    i5: 35
+    i6: 108
+    i7: 148
+    i8: 42
+    i9: 186
+    i10: 9
+    i11: 92
+    i12: 120
+    i13: 246
+    i14: 16
+    i15: 96
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

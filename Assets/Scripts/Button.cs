@@ -1,27 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Button : MonoBehaviour {
+public class Button : NetworkBehaviour, IInteractiveWithPlayer
+{
+    [SerializeField] private Door _target;
 
-    [SerializeField]
-    private Door target;
-
-    public bool click = false;
-
-	void Start () {
-		
-	}
-	
-	void Update () {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            var distance = (Camera.main.transform.position - target.transform.position).magnitude;
-            if(distance < 5.0)
-            {
-                target.Clicked();
-            }
-        }
-	}
+    [ClientRpc]
+    public void Interact()
+    {
+        _target.Clicked();
+    }
 }

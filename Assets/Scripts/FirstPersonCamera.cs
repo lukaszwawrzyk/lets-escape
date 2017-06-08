@@ -29,13 +29,12 @@ public class FirstPersonCamera : NetworkBehaviour {
 
     private void FixedUpdate()
     {
-
         if (_cameraControlEnabled)
         {
             RotateCameraAndPlayer();
         }
 
-        if (Input.GetKeyDown("escape"))
+        if (Input.GetKeyDown("x"))
         {
             ToggleCameraControl();
         }
