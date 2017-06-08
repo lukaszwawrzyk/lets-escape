@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4805735710538682}
-  - component: {fileID: 114602598507308718}
   m_Layer: 0
   m_Name: button
   m_TagString: Untagged
@@ -56,8 +55,10 @@ GameObject:
   - component: {fileID: 33859033412127868}
   - component: {fileID: 65130174088581750}
   - component: {fileID: 23648265149397634}
+  - component: {fileID: 114089523280103062}
+  - component: {fileID: 114916448381236708}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,16 +207,47 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114602598507308718
+--- !u!114 &114089523280103062
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1329112765530698}
+  m_GameObject: {fileID: 1966722325756456}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1625d8d342e1b2d41a9735a050d8829f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  click: 0
+  _target: {fileID: 0}
+--- !u!114 &114916448381236708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966722325756456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 189
+    i1: 27
+    i2: 156
+    i3: 34
+    i4: 27
+    i5: 248
+    i6: 46
+    i7: 164
+    i8: 137
+    i9: 41
+    i10: 30
+    i11: 223
+    i12: 158
+    i13: 100
+    i14: 154
+    i15: 30
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0

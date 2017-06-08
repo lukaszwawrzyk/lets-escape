@@ -1,4 +1,6 @@
-﻿interface IInteractiveWithPlayer
+﻿using UnityEngine;
+
+interface IInteractiveWithPlayer
 {
     void Interact();
 }

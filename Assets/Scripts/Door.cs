@@ -7,10 +7,20 @@ public class Door : MonoBehaviour, IButtonTarget
     [SerializeField] private float _openAngle = 130.0f;
     [SerializeField] private float _openingSpeed = 150.0f;
 
+    [SerializeField] private bool _locked = false;
+    [SerializeField] private int _lockKey = 0;
+
     private bool _opening;
     private bool _closing;
     private bool _opened;
+    
+    private PlayerInventory _playerInventory;
 
+    private void Start()
+    {
+        _playerInventory = GameObject.Find("common_inventory").GetComponent<PlayerInventory>();
+    }
+    
     private void Update()
     {
         if (_opening)
@@ -39,8 +49,19 @@ public class Door : MonoBehaviour, IButtonTarget
 
     private void Open()
     {
-        _opened = true;
-        _opening = true;
+        if (!_locked)
+        {
+            _opened = true;
+            _opening = true;
+        }
+        else
+        {
+            if (_playerInventory.HasKey(_lockKey))
+            {
+                _opened = true;
+                _opening = true;            
+            }
+        }
     }
 
     private void Close()

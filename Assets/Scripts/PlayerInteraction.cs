@@ -25,6 +25,7 @@ public class PlayerInteraction : MonoBehaviour {
                 {
                     var interactive = hitComponents[0] as IInteractiveWithPlayer;
                     if (interactive != null) interactive.Interact();
+                    Debug.Log(hit.collider.transform.name);
                 }
             }
         }
