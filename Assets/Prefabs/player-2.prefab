@@ -26,9 +26,9 @@ GameObject:
   - component: {fileID: 114089220106569984}
   - component: {fileID: 114473729633145140}
   - component: {fileID: 114917602083679128}
+  - component: {fileID: 143621725525446834}
   - component: {fileID: 114838389170247650}
   - component: {fileID: 114027150883926908}
-  - component: {fileID: 143621725525446834}
   - component: {fileID: 114547444518683436}
   m_Layer: 0
   m_Name: player-2
@@ -117,16 +117,16 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
+  m_TransformSyncMode: 4
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
+  m_RotationSyncCompression: 2
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 10
+  m_InterpolateRotation: 10
+  m_InterpolateMovement: 1
 --- !u!114 &114089220106569984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,7 +141,7 @@ MonoBehaviour:
   _speed: 5
   _jumpVelocity: 7
   _gravity: 9.81
-  _allowMovingInTheAir: 0
+  _allowMovingInTheAir: 1
 --- !u!114 &114473729633145140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensitivity: 5
-  _palyerEyesHeight: 0.75
+  _palyerEyesPos: {x: 0, y: 1.1, z: 0}
 --- !u!136 &136671474471232496
 CapsuleCollider:
   m_ObjectHideFlags: 1
