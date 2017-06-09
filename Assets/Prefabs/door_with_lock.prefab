@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572646742810550}
   - component: {fileID: 114162587260871048}
+  - component: {fileID: 114432055784321856}
   m_Layer: 0
   m_Name: door_with_lock
   m_TagString: Untagged
@@ -81,8 +82,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1710375895957170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.8, y: 1.9968517, z: 9.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -36.28, y: 5.66, z: 10}
+  m_LocalScale: {x: 2.2, y: 3.3, z: 1}
   m_Children:
   - {fileID: 4870247657390184}
   m_Father: {fileID: 0}
@@ -169,6 +170,41 @@ MonoBehaviour:
   _openingSpeed: 150
   _locked: 1
   _lockKey: 1
+  _opening: 0
+  _closing: 0
+  _opened: 0
+--- !u!114 &114432055784321856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1710375895957170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 254
+    i1: 35
+    i2: 54
+    i3: 203
+    i4: 34
+    i5: 55
+    i6: 150
+    i7: 20
+    i8: 43
+    i9: 186
+    i10: 61
+    i11: 44
+    i12: 148
+    i13: 168
+    i14: 194
+    i15: 124
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114560973884741746
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class Door : MonoBehaviour, IButtonTarget
+public class Door : NetworkBehaviour, IButtonTarget
 {
     [SerializeField] private float _angle;
     [SerializeField] private float _openAngle = 130.0f;
@@ -12,14 +12,12 @@ public class Door : MonoBehaviour, IButtonTarget
 
     public bool _opening = false;
     public bool _closing = false;
+    
+    [SyncVar]
     public bool _opened = false;
     
     private PlayerInventory _playerInventory;
 
-    public Door()
-    {
-        _lockKey = 0;
-    }
 
     private void Start()
     {
@@ -69,12 +67,22 @@ public class Door : MonoBehaviour, IButtonTarget
         if (!_locked)
         {
             _opened = true;
+            Debug.Log("Open");
+            /*if (isLocalPlayer)
+            {
+                CmdUpdateOpened(true);
+            }*/
         }
         else
         {
             if (_playerInventory.HasKey(_lockKey))
             {
-                _opened = true;            
+                _opened = true;
+                Debug.Log("Open");
+                /*if (isLocalPlayer)
+                {
+                    CmdUpdateOpened(true);
+                }*/
             }
         }
     }
@@ -82,8 +90,20 @@ public class Door : MonoBehaviour, IButtonTarget
     private void Close()
     {
         _opened = false;
+        Debug.Log("Close");
+        /*if (isLocalPlayer)
+        {
+            CmdUpdateOpened(false);
+        }*/
     }
 
+    /*[Command]
+    void CmdUpdateOpened(bool opened)
+    {
+        Debug.Log("Command!");
+        _opened = opened;
+    }*/
+    
     public void Clicked()
     {
         if (_opened)
