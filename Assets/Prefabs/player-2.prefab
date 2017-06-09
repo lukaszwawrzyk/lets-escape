@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114838389170247650}
   - component: {fileID: 114027150883926908}
   - component: {fileID: 114547444518683436}
+  - component: {fileID: 114057280801563922}
   m_Layer: 0
   m_Name: player-2
   m_TagString: Untagged
@@ -127,6 +128,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
   m_InterpolateMovement: 1
+--- !u!114 &114057280801563922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1998878537542676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11caf4b8c363540c7a10bffffe515d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {x: 40, y: 5, z: -25}
 --- !u!114 &114089220106569984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 15
-  _jumpVelocity: 15
+  _jumpVelocity: 10
   _gravity: 9.81
   _allowMovingInTheAir: 1
 --- !u!114 &114473729633145140
@@ -222,7 +235,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 4.692734
-  m_Height: 14.511276
+  m_Height: 16
   m_Direction: 1
   m_Center: {x: 0, y: -0.20567441, z: 0.10353297}
 --- !u!143 &143621725525446834
