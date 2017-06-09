@@ -7,7 +7,7 @@ public class FirstPersonCamera : NetworkBehaviour {
     private float _sensitivity = 5.0f;
 
     [SerializeField]
-    private Vector3 _palyerEyesPos = new Vector3(0.0f, 1.1f, 0.0f);
+    private Vector3 _playerEyesPos = new Vector3(0.0f, 1.1f, 0.0f);
 
     private Transform _player;
     private Transform _mainCamera;
@@ -23,6 +23,7 @@ public class FirstPersonCamera : NetworkBehaviour {
         }
         _player = transform;
         _mainCamera = Camera.main.transform;
+        Camera.main.nearClipPlane = 0.7f;
         EnableCameraMovement();
     }
 
@@ -45,7 +46,7 @@ public class FirstPersonCamera : NetworkBehaviour {
         UpdateLookDirection();
         _player.rotation = Quaternion.AngleAxis(_lookDirection.x, _player.transform.up);
         _mainCamera.rotation = _player.rotation * Quaternion.AngleAxis(-_lookDirection.y, Vector3.right);
-        _mainCamera.position = _player.position + _palyerEyesPos;
+        _mainCamera.position = _player.position + _playerEyesPos;
     }
 
     private void UpdateLookDirection()

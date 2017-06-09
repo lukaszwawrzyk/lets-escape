@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8122733d08f57794db2d2546e862a23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _jumpVelocity: 7
+  _speed: 15
+  _jumpVelocity: 15
   _gravity: 9.81
   _allowMovingInTheAir: 1
 --- !u!114 &114473729633145140
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensitivity: 5
-  _palyerEyesPos: {x: 0, y: 1.1, z: 0}
+  _playerEyesPos: {x: 0, y: 1.1, z: 0}
 --- !u!136 &136671474471232496
 CapsuleCollider:
   m_ObjectHideFlags: 1

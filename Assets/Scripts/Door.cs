@@ -41,6 +41,7 @@ public class Door : MonoBehaviour, IButtonTarget
         
         if (_opening)
         {
+            Debug.Log("opening!");
             _angle += Time.deltaTime * _openingSpeed;
 
             if (_angle >= _openAngle)
