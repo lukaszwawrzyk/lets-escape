@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerInteraction : MonoBehaviour {
+public class PlayerInteraction : NetworkBehaviour {
 
     [SerializeField]
     [Range(0.0f, 20.0f)]
@@ -11,6 +12,11 @@ public class PlayerInteraction : MonoBehaviour {
 
     private void FixedUpdate()
     {
+		if (!isLocalPlayer)
+        {
+            return;
+        }
+		
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit hit;

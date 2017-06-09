@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4914891282235636}
   - component: {fileID: 114170085427616216}
+  - component: {fileID: 114928834138363418}
   m_Layer: 0
   m_Name: door_with_button
   m_TagString: Untagged
@@ -52,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328807402047506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.896, y: -0.333, z: 0}
+  m_LocalPosition: {x: -0.896, y: 0.74, z: 0}
   m_LocalScale: {x: 2.3999999, y: 2.3999999, z: 2.3999999}
   m_Children: []
   m_Father: {fileID: 4914891282235636}
@@ -65,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1331806297731842}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.09, y: 1.02, z: 11.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.019999187, y: -2.87, z: -6.666667}
+  m_LocalScale: {x: 1.4066666, y: 2.61, z: 1.4066666}
   m_Children:
   - {fileID: 4442550626777038}
   m_Father: {fileID: 0}
@@ -85,7 +86,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: d6183a2b56c2e1e4fa6a06056b5f03bc, type: 2}
+  - {fileID: 2100000, guid: 6e5ed4435a2b8ac4ba77163a3a8b42a5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,3 +140,38 @@ MonoBehaviour:
   _openingSpeed: 150
   _locked: 0
   _lockKey: 0
+  _opening: 0
+  _closing: 0
+  _opened: 0
+--- !u!114 &114928834138363418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331806297731842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 76
+    i1: 233
+    i2: 69
+    i3: 41
+    i4: 74
+    i5: 56
+    i6: 17
+    i7: 4
+    i8: 169
+    i9: 197
+    i10: 52
+    i11: 218
+    i12: 8
+    i13: 155
+    i14: 203
+    i15: 48
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1

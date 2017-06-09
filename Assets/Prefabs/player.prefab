@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 143718645351664144}
   - component: {fileID: 114752210880434172}
   - component: {fileID: 114247265133653512}
-  - component: {fileID: 114260488489514202}
+  - component: {fileID: 114489427816759008}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 4
+  m_TransformSyncMode: 1
   m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 2
@@ -109,18 +109,6 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 10
   m_InterpolateMovement: 1
---- !u!114 &114260488489514202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1200539812148032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aec994cabc694c4cbed3a239f9fab59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interactionDistance: 4
 --- !u!114 &114353011196636886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,6 +124,18 @@ MonoBehaviour:
   _jumpVelocity: 7
   _gravity: 9.81
   _allowMovingInTheAir: 1
+--- !u!114 &114489427816759008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1200539812148032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aec994cabc694c4cbed3a239f9fab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactionDistance: 5
 --- !u!114 &114671067698947554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sensitivity: 5
-  _palyerEyesHeight: 0.75
+  _playerEyesPos: {x: 0, y: 1.1, z: 0}
 --- !u!136 &136985852755541040
 CapsuleCollider:
   m_ObjectHideFlags: 1

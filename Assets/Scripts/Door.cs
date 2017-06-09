@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class Door : MonoBehaviour, IButtonTarget
+public class Door : NetworkBehaviour, IButtonTarget
 {
     [SerializeField] private float _angle;
     [SerializeField] private float _openAngle = 130.0f;
@@ -10,11 +10,14 @@ public class Door : MonoBehaviour, IButtonTarget
     [SerializeField] private bool _locked = false;
     [SerializeField] private int _lockKey = 0;
 
-    private bool _opening;
-    private bool _closing;
-    private bool _opened;
+    public bool _opening = false;
+    public bool _closing = false;
+    
+    [SyncVar]
+    public bool _opened = false;
     
     private PlayerInventory _playerInventory;
+
 
     private void Start()
     {
@@ -23,8 +26,20 @@ public class Door : MonoBehaviour, IButtonTarget
     
     private void Update()
     {
+        if (_opened)
+        {
+            _opening = true;
+            _closing = false;
+        }
+        else
+        {
+            _opening = false;
+            _closing = true;
+        }
+        
         if (_opening)
         {
+            Debug.Log("opening!");
             _angle += Time.deltaTime * _openingSpeed;
 
             if (_angle >= _openAngle)
@@ -52,14 +67,22 @@ public class Door : MonoBehaviour, IButtonTarget
         if (!_locked)
         {
             _opened = true;
-            _opening = true;
+            Debug.Log("Open");
+            /*if (isLocalPlayer)
+            {
+                CmdUpdateOpened(true);
+            }*/
         }
         else
         {
             if (_playerInventory.HasKey(_lockKey))
             {
                 _opened = true;
-                _opening = true;            
+                Debug.Log("Open");
+                /*if (isLocalPlayer)
+                {
+                    CmdUpdateOpened(true);
+                }*/
             }
         }
     }
@@ -67,9 +90,20 @@ public class Door : MonoBehaviour, IButtonTarget
     private void Close()
     {
         _opened = false;
-        _closing = true;
+        Debug.Log("Close");
+        /*if (isLocalPlayer)
+        {
+            CmdUpdateOpened(false);
+        }*/
     }
 
+    /*[Command]
+    void CmdUpdateOpened(bool opened)
+    {
+        Debug.Log("Command!");
+        _opened = opened;
+    }*/
+    
     public void Clicked()
     {
         if (_opened)
